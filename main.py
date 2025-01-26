@@ -3,21 +3,21 @@ import date
 
 st.set_page_config(layout="wide")
 
-st.session_state['menu_items'] = {"turkey_blt" : {"name" : "Turkey BLT",
-                                                  "serving_size" : "1 sandwich",
-                                                  "total_fat" : 20,
-                                                  "saturated_fat" : 20,
-                                                  "calories" : 3000,
-                                                  "station" : "deli"},
-                                  "cheese_pizza" : {"name" : "Cheese Pizza",
-                                                    "calories" : 3000,
-                                                    "station" : "pizza"},
-                                  "sausage_pizza" : {"name" : "Sausage Pizza",
-                                                    "calories" : 3000,
-                                                     "station" : "pizza"},
-                                  "cheeseburger" : {"name" : "Cheeseburger",
-                                                    "calories" : 3000,
-                                                    "station" : "grill"},
+st.session_state['menu_items'] = {"turkey_blt": {"name": "Turkey BLT",
+                                                  "serving_size": "1 sandwich",
+                                                  "total_fat": 20,
+                                                  "saturated_fat": 20,
+                                                  "calories": 3000,
+                                                  "station": "deli"},
+                                  "cheese_pizza": {"name": "Cheese Pizza",
+                                                   "calories": 3000,
+                                                   "station": "pizza"},
+                                  "sausage_pizza" : {"name": "Sausage Pizza",
+                                                     "calories": 3000,
+                                                     "station": "pizza"},
+                                  "cheeseburger": {"name": "Cheeseburger",
+                                                   "calories": 3000,
+                                                   "station": "grill"},
                                 }
 if 'menu_item' not in st.session_state:
     st.session_state['menu_item'] = ""
@@ -44,8 +44,7 @@ st.markdown(
     }
     </style>
     """,
-    unsafe_allow_html=True,
-)
+    unsafe_allow_html=True)
 
 
 # Create a dialog that pops up when the page is opened
@@ -56,14 +55,16 @@ def show_dialog():
         st.session_state.dialog_shown = True
         st.rerun()
 
+
 if "dialog_shown" not in st.session_state:
     show_dialog()
 
 
 st.title('Example Menu Website')
+st.info("Click on an item in a station for reviews and nutrition information!")
 st.write("---")
 
-week1 = "This week" #week of 9/2
+week1 = "This week"  # week of 9/2
 week2 = f"Week of {date.get_next_two_weeks()[0]}"
 week3 = f"Week of {date.get_next_two_weeks()[1]}"
 
@@ -79,7 +80,7 @@ if week == week1:
 
     col1, col2 = st.columns(spec=[0.4, 0.6])
 
-#menu that doesn't change
+# menu that doesn't change
     with col1:
         with st.container(border=True):
             st.subheader(":orange[Deli Station]")
@@ -111,7 +112,7 @@ if week == week1:
     # weekly menu
     with col2:
 
-        #day and menu
+        # day and menu
         st.subheader(":orange[Monday]")
         st.write("""
         **Sauté Station**
