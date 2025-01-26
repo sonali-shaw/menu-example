@@ -1,0 +1,3 @@
+#hides automatic sidebar
+[client]
+showSidebarNavigation = false
