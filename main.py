@@ -1,4 +1,5 @@
 import streamlit as st
+import date
 
 st.set_page_config(layout="wide")
 
@@ -46,12 +47,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title('Menu (Mock)')
+
+# Create a dialog that pops up when the page is opened
+@st.dialog("Welcome")
+def show_dialog():
+    st.write("Try clicking on a station item for reviews and nutrition information!")
+    if st.button("Got it!"):
+        st.session_state.dialog_shown = True
+        st.rerun()
+
+if "dialog_shown" not in st.session_state:
+    show_dialog()
+
+
+st.title('Example Menu Website')
 st.write("---")
 
 week1 = "This week" #week of 9/2
-week2 = "Week of 9/9"
-week3 = "Week of 9/16"
+week2 = f"Week of {date.get_next_two_weeks()[0]}"
+week3 = f"Week of {date.get_next_two_weeks()[1]}"
 
 week = st.selectbox(
     "Select Week",
@@ -60,11 +74,12 @@ week = st.selectbox(
 
 if week == week1:
     with st.container(border=True):
-        st.write("Allergen Guide: put info here for vegan / gf etc")
+        st.write("**Allergen Guide**: Items may contain shellfish and nuts. Additional nutrition information is available "
+                 "upon request.")
 
     col1, col2 = st.columns(spec=[0.4, 0.6])
 
-    # menu that doesn't change
+#menu that doesn't change
     with col1:
         with st.container(border=True):
             st.subheader(":orange[Deli Station]")
