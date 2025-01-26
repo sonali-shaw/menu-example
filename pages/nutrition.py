@@ -333,19 +333,18 @@ with (col2):
             selected += 1
             st.write(f"You left a {selected} star review!")
 
-            # update ratings
             ratings[menu_item_name][selected] += 1
             store_data(ratings)
 
-        with sub_col2:
-            avg, review_sum = avg_rating(ratings)
-            st.write(f"{round(avg, 2)} stars on average")
-            for i in range(5, 0, -1):
-                reviews_for_i_stars = ratings[menu_item_name][i]
-                percentage = round(reviews_for_i_stars/review_sum,2)*100
-                render_rating_bar(i, percentage, reviews_for_i_stars)
-            st.write(" ")
-            st.write(" ")
-            if st.button("Back"):
-                st.switch_page("main.py")
+    with sub_col2:
+        avg, review_sum = avg_rating(ratings)
+        st.write(f"{round(avg, 2)} stars on average")
+        for i in range(5, 0, -1):
+            reviews_for_i_stars = ratings[menu_item_name][i]
+            percentage = round(reviews_for_i_stars/review_sum,2)*100
+            render_rating_bar(i, percentage, reviews_for_i_stars)
+        st.write(" ")
+        st.write(" ")
+        if st.button("Back"):
+            st.switch_page("main.py")
 
